@@ -185,10 +185,9 @@ body {
     padding-right: 12px;
 }
 
-
-/* Hero Section (Index Page) */
+/* Hero Section (Index Page) - MODIFICADO */
 .hero-section {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://source.unsplash.com/1600x900/?restaurant,chef') no-repeat center center/cover;
+    background: none; /* Remove o background original */
     color: white;
     text-align: center;
     padding: 180px 20px;
@@ -204,8 +203,14 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,0.4); /* Overlay um pouco mais claro */
+    /* Substitua 'URL_DA_SUA_IMAGEM_AQUI' pela URL da imagem desejada */
+    background-image: url('imagens/fundo2.jpeg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px); /* Ajuste o valor do desfoque (ex: 5px, 10px) */
     z-index: -1;
+    /* Adiciona uma sobreposição sutil para melhor contraste do texto */
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.4);
 }
 
 .hero-section h2 {
@@ -602,7 +607,6 @@ body {
     font-size: 1rem;
 }
 
-
 /* Index Page - Estilos Adicionais para Layout Empresarial */
 
 /* Seção Sobre Nós */
@@ -804,5 +808,57 @@ body {
     }
     .contact-grid { /* Permite 2 colunas para contact-info-block se houver espaço */
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+/* --- Delivery Page Styles --- */
+
+/* Estilos para a caixa de filtro */
+.delivery-actions {
+    margin-bottom: 25px;
+    display: flex; /* Usa flexbox para alinhar itens */
+    justify-content: space-between; /* Espaça filtro e botão Novo Pedido */
+    align-items: flex-end; /* Alinha na parte inferior */
+    flex-wrap: wrap; /* Permite que os itens quebrem linha em telas menores */
+    gap: 15px; /* Espaço entre os itens */
+}
+
+.search-pedido-group {
+    flex-grow: 1; /* Permite que o grupo de busca cresça */
+    max-width: 60%; /* Define uma largura máxima para a busca em telas maiores */
+    /* Garante que o input preencha o espaço disponível */
+    display: flex;
+    flex-direction: column;
+}
+
+.search-pedido-group input {
+    width: calc(100% - 2px); /* Ajusta a largura total para borda */
+}
+
+/* Ajustes para os cards de pedido (opcional: cores por status) */
+.pedido-card.status-preparacao {
+    border-left: 5px solid #FFC107; /* Amarelo para Em Preparação */
+}
+
+.pedido-card.status-aguardando {
+    border-left: 5px solid #E60000; /* Vermelho para Aguardando (pode ser o mesmo que o padrão) */
+}
+
+/* Botões dentro do card de pedido */
+.pedido-card .btn-small {
+    margin-top: 10px;
+}
+
+/* Media Queries para responsividade da página de delivery */
+@media (max-width: 768px) {
+    .delivery-actions {
+        flex-direction: column; /* Empilha o filtro e o botão */
+        align-items: center; /* Centraliza */
+        gap: 20px;
+    }
+    .search-pedido-group {
+        max-width: 90%; /* Ocupa mais espaço em telas menores */
+    }
+    .delivery-actions .btn { /* Botão "Novo Pedido" */
+        width: 80%; /* Ocupa mais largura */
     }
 }

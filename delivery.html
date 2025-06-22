@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delivery</title>
+    <title>Delivery - Tarantella Pizzas e Massas</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -13,10 +13,10 @@
         <h1>Tarantella - Pizzas e Massas</h1>
         <nav>
             <ul>
-                <li><a href="index.html" class="active">Início</a></li>
+                <li><a href="index.html">Início</a></li>
                 <li><a href="cardapio.html">Cardápio</a></li>
                 <li><a href="mesas.html">Mesas</a></li>
-                <li><a href="delivery.html">Delivery</a></li>
+                <li><a href="delivery.html" class="active">Delivery</a></li>
                 <li><a href="login.html">Sair</a></li>
             </ul>
         </nav>
@@ -25,6 +25,10 @@
         <h2>Pedidos de Delivery</h2>
 
         <div class="delivery-actions">
+            <div class="input-group search-pedido-group">
+                <label for="filtro-pedidos">Filtrar Pedidos:</label>
+                <input type="text" id="filtro-pedidos" placeholder="Buscar por cliente, pedido ou status...">
+            </div>
             <button class="btn" id="btn-novo-pedido">Novo Pedido Delivery</button>
         </div>
 
@@ -82,10 +86,9 @@
             </div>
         </div>
 
-        <div class="pedidos-delivery-lista">
+        <div class="pedidos-delivery-lista" id="pedidos-delivery-lista">
             <h3>Pedidos Pendentes:</h3>
             </div>
     </div>
-    <script src="scripts/delivery.js"></script>
-</body>
+    <script src="scripts/delivery.js"></script> </body>
 </html>
