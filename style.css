@@ -1,0 +1,808 @@
+/* Importar fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+/* Geral */
+body {
+    font-family: 'Open Sans', sans-serif; /* Aplica Open Sans como padrão para o body */
+    margin: 0;
+    padding: 0;
+    background-color: #F8F8F8; /* Fundo branco suave */
+    color: #333333; /* Texto principal em cinza escuro para contraste */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px; /* Mais padding para respiro */
+}
+
+.content {
+    padding-top: 100px; /* Ajuste para navbar */
+}
+
+/* Botões */
+.btn {
+    display: inline-block;
+    background-color: #E60000; /* Vermelho vibrante para botões primários */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px; /* Bordas levemente mais arredondadas */
+    cursor: pointer;
+    font-size: 1.05rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #CC0000; /* Vermelho mais escuro no hover */
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #666666; /* Cinza escuro para botões secundários */
+    color: white;
+}
+.btn-secondary:hover {
+    background-color: #555555;
+}
+
+.btn-small {
+    padding: 7px 12px;
+    font-size: 0.85rem;
+}
+
+.btn-finalizar {
+    background-color: #28A745; /* Verde para finalizar/sucesso */
+    margin-top: 15px;
+}
+
+.btn-finalizar:hover {
+    background-color: #218838;
+}
+
+/* Formulários */
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600; /* Um pouco mais de peso */
+    color: #444444; /* Rótulos em cinza escuro */
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"],
+.input-group input[type="number"] {
+    width: calc(100% - 24px); /* Ajusta a largura considerando padding */
+    padding: 12px;
+    border: 1px solid #CCCCCC; /* Borda cinza clara */
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: white;
+    color: #333333;
+}
+
+.input-group input[type="text"]:focus,
+.input-group input[type="password"]:focus,
+.input-group input[type="number"]:focus {
+    outline: none;
+    border-color: #E60000; /* Borda vermelha no foco */
+    box-shadow: 0 0 0 0.2rem rgba(230,0,0,0.25); /* Sombra suave vermelha */
+}
+
+/* Navbar */
+.navbar {
+    background-color: #FFFFFF; /* Fundo branco para a navbar */
+    color: #333333;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    box-sizing: border-box;
+    border-bottom: 1px solid #EEEEEE; /* Borda inferior sutil */
+}
+
+.navbar h1 {
+    font-family: 'Montserrat', sans-serif; /* Aplica Montserrat para o título da navbar */
+    font-weight: 700; /* Más peso */
+    margin: 0;
+    font-size: 1.8rem;
+    color: #333333; /* Título da navbar em preto */
+    flex-shrink: 1;
+    min-width: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens do menu quebrem linha */
+    justify-content: flex-end; /* Alinha os itens à direita */
+    flex-grow: 1; /* Permite que a lista de navegação ocupe o espaço restante */
+}
+
+.navbar ul li {
+    margin-left: 20px;
+    padding: 5px 0;
+}
+
+.navbar ul li a {
+    color: #444444; /* Links em cinza escuro */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover,
+.navbar ul li a.active {
+    color: #E60000; /* Links ativos e hover em vermelho */
+}
+
+/* Login Page Body Style - Corrigido para compatibilidade */
+.login-page-body { /* Classe para o body da página de login */
+    background-color: #F0F0F0; /* Fundo cinza claro para o login */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: #333333;
+}
+
+.login-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Sombra suave */
+    width: 400px;
+    text-align: center;
+    border: 1px solid #DDDDDD; /* Borda suave */
+}
+
+.login-box h2 {
+    margin-top: 0;
+    color: #333333; /* Título do login em preto */
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    letter-spacing: 1px;
+}
+
+/* Ajuste do Input do login, sem padding-right extra */
+.input-group input[type="text"] {
+    padding-right: 12px;
+}
+
+
+/* Hero Section (Index Page) */
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://source.unsplash.com/1600x900/?restaurant,chef') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 180px 20px;
+    margin-top: 75px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4); /* Overlay um pouco mais claro */
+    z-index: -1;
+}
+
+.hero-section h2 {
+    font-family: 'Montserrat', sans-serif; /* Fonte profissional para o título do hero */
+    font-size: 3.5em; /* Ajustar tamanho */
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+.hero-section p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+    font-weight: 400;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+    background-color: #E60000; /* Botões de ação em vermelho */
+    border: none;
+}
+
+.action-buttons .btn:hover {
+    background-color: #CC0000;
+}
+
+/* Seção de Destaques/Serviços (adaptada) */
+.features-section {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #F8F8F8;
+}
+
+.features-section h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3em;
+    color: #333333; /* Título em preto */
+    margin-bottom: 40px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Define 4 colunas de largura igual para telas grandes */
+    gap: 30px; /* Espaçamento entre os itens */
+}
+
+.feature-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    text-align: center;
+    text-decoration: none;
+    color: #333333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #EEEEEE; /* Borda mais clara */
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+.feature-card .icon {
+    font-size: 3em;
+    color: #E60000; /* Ícones em vermelho */
+    margin-bottom: 15px;
+}
+
+.feature-card h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8em;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #555555;
+}
+
+/* Mesa Grid (Tela de Mesas) */
+.mesa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.mesa-card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 120px;
+    border: 1px solid #EEEEEE;
+}
+
+.mesa-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+.mesa-card.disponivel {
+    border-left: 6px solid #28A745; /* Verde para disponível */
+}
+
+.mesa-card.ocupada {
+    border-left: 6px solid #E60000; /* Vermelho para ocupada */
+}
+
+.mesa-card h3 {
+    margin: 10px 0;
+    font-size: 1.8rem;
+    color: #333333;
+}
+
+.mesa-card p {
+    font-size: 0.9rem;
+    color: #777777;
+    margin-bottom: 15px;
+}
+
+.mesa-card .btn-small {
+    width: 90%;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6); /* Fundo do modal mais suave */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    width: 90%;
+    max-width: 650px;
+    position: relative;
+    animation: fadeIn 0.3s ease-out;
+    border: 1px solid #DDDDDD;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-button {
+    color: #AAAAAA;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #E60000; /* Botão fechar em vermelho no hover */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h3 {
+    color: #333333; /* Título do modal em preto */
+    margin-bottom: 25px;
+    font-size: 2em;
+    text-align: center;
+}
+
+.modal-content hr {
+    border: 0;
+    height: 1px;
+    background-color: #EEEEEE;
+    margin: 25px 0;
+}
+
+.modal-content h4 {
+    color: #444444; /* Títulos menores no modal em cinza escuro */
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+#lista-itens-pedido, #lista-itens-delivery {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+#lista-itens-pedido li, #lista-itens-delivery li {
+    background-color: #F8F8F8; /* Fundo dos itens da lista claro */
+    border: 1px solid #EEEEEE;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333333;
+}
+
+#lista-itens-pedido li .btn-remover-item {
+    background-color: #E60000; /* Botão remover em vermelho */
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    border-radius: 4px;
+}
+#lista-itens-pedido li .btn-remover-item:hover {
+    background-color: #CC0000;
+}
+
+.total-pedido {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #EEEEEE;
+    text-align: right;
+    font-size: 1.6em; /* Pouco maior */
+    font-weight: bold;
+    color: #28A745; /* Total em verde */
+}
+
+/* Delivery */
+.delivery-actions {
+    margin-bottom: 25px;
+    text-align: right;
+}
+
+.pedidos-delivery-lista {
+    margin-top: 30px;
+}
+
+.pedidos-delivery-lista h3 {
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+.pedido-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    margin-bottom: 15px;
+    border: 1px solid #EEEEEE;
+    border-left: 5px solid #E60000; /* Borda vermelha para pedidos de delivery */
+    color: #333333;
+}
+
+.pedido-card h4 {
+    margin-top: 0;
+    color: #333333;
+    font-size: 1.3rem;
+}
+
+.pedido-card p {
+    margin: 5px 0;
+    color: #777777;
+}
+
+.pedido-card button {
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+/* Cardápio Page Styles */
+.menu-categories {
+    text-align: center;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category-btn {
+    background-color: #F0F0F0; /* Fundo claro para botões de categoria */
+    color: #555555;
+    border: 1px solid #CCCCCC;
+    padding: 10px 20px;
+    border-radius: 20px; /* Bordas mais arredondadas para um toque moderno */
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+    background-color: #E60000; /* Vermelho no hover */
+    color: white;
+    border-color: #E60000;
+}
+
+.category-btn.active {
+    background-color: #E60000; /* Vermelho para categoria ativa */
+    color: white;
+    border-color: #E60000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.menu-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #EEEEEE;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.item-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.item-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.item-info h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5em;
+    color: #333333;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.item-description {
+    font-size: 0.95em;
+    color: #666666;
+    margin-bottom: 15px;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.item-price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #E60000;
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.menu-item .btn {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1rem;
+}
+
+
+/* Index Page - Estilos Adicionais para Layout Empresarial */
+
+/* Seção Sobre Nós */
+.about-section {
+    background-color: #FFFFFF; /* Fundo branco para a seção */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.about-section h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    color: #333333;
+    margin-bottom: 40px;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    text-align: left;
+}
+
+.about-text {
+    flex: 1;
+    line-height: 1.8;
+    font-size: 1.05em;
+    color: #555555;
+}
+
+.about-text p:last-child {
+    margin-bottom: 0;
+}
+
+.about-image {
+    flex: 1;
+    max-width: 50%; /* Imagem ocupa metade da largura em telas grandes */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Seção de Galeria */
+.gallery-section {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #F0F0F0; /* Fundo cinza claro para a galeria */
+}
+
+.gallery-section h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    color: #333333;
+    margin-bottom: 40px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Colunas flexíveis */
+    gap: 20px;
+}
+
+.gallery-item {
+    width: 100%;
+    height: 200px; /* Altura fixa para as imagens da galeria */
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03); /* Leve zoom no hover */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+/* Seção de Contato e Localização */
+.contact-section {
+    background-color: #FFFFFF;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.contact-section h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    color: #333333;
+    margin-bottom: 40px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.contact-info-block {
+    background-color: #F8F8F8;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: left;
+    border: 1px solid #EEEEEE;
+}
+
+.contact-info-block h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4em;
+    color: #E60000; /* Títulos em vermelho */
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.contact-info-block h4 .fas {
+    margin-right: 10px;
+    color: #333333; /* Ícone preto */
+}
+
+.contact-info-block p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #555555;
+    margin-bottom: 10px;
+}
+
+.social-links a {
+    color: #666666;
+    font-size: 1.8em;
+    margin-right: 15px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #E60000; /* Vermelho no hover */
+}
+
+.map-container {
+    grid-column: 1 / -1; /* O mapa ocupa a largura total da grade */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 1px solid #EEEEEE;
+}
+
+.map-container iframe {
+    border-radius: 8px;
+}
+
+/* Rodapé */
+.footer {
+    background-color: #333333; /* Fundo escuro */
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+.footer-link {
+    color: #E60000; /* Links no rodapé em vermelho */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/* --- Media Queries (Para telas grandes, já que removemos as menores) --- */
+
+/* Telas maiores que 768px mas menores que 992px (tablets maiores e desktops menores) */
+/* Esta media query ainda pode ser útil para alguns ajustes em larguras intermediárias */
+@media (max-width: 992px) {
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr); /* Volta para 2 colunas */
+        gap: 25px;
+    }
+    .hero-section h2 {
+        font-size: 3em;
+    }
+    .hero-section p {
+        font-size: 1.1em;
+    }
+    .about-section h3, .gallery-section h3, .contact-section h3 {
+        font-size: 2.2em;
+    }
+    .about-image { /* Garante que a imagem não seja muito pequena em telas maiores de tablet */
+        max-width: 60%;
+    }
+    .contact-grid { /* Permite 2 colunas para contact-info-block se houver espaço */
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}

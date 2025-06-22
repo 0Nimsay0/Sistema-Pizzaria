@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <h1>Tarantella - Pizzas e Massas</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Início</a></li>
+                <li><a href="cardapio.html">Cardápio</a></li>
+                <li><a href="mesas.html">Mesas</a></li>
+                <li><a href="delivery.html">Delivery</a></li>
+                <li><a href="login.html">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container content">
+        <h2>Pedidos de Delivery</h2>
+
+        <div class="delivery-actions">
+            <button class="btn" id="btn-novo-pedido">Novo Pedido Delivery</button>
+        </div>
+
+        <div id="modal-delivery" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h3>Novo Pedido de Delivery</h3>
+                <form id="form-delivery">
+                    <div class="input-group">
+                        <label for="cliente-busca">Buscar Cliente (Nome/Telefone):</label>
+                        <input type="text" id="cliente-busca" placeholder="Digite para buscar ou cadastrar">
+                        <button type="button" class="btn btn-small" id="btn-buscar-cliente">Buscar</button>
+                    </div>
+
+                    <div id="cliente-info" style="display: none;">
+                        <h4>Informações do Cliente:</h4>
+                        <div class="input-group">
+                            <label for="cliente-nome">Nome:</label>
+                            <input type="text" id="cliente-nome" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="cliente-telefone">Telefone:</label>
+                            <input type="text" id="cliente-telefone" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="cliente-endereco">Endereço:</label>
+                            <input type="text" id="cliente-endereco" required>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <h4>Itens do Pedido:</h4>
+                    <div class="input-group">
+                        <label for="delivery-item-nome">Item:</label>
+                        <input type="text" id="delivery-item-nome" placeholder="Nome do item">
+                    </div>
+                    <div class="input-group">
+                        <label for="delivery-item-quantidade">Quantidade:</label>
+                        <input type="number" id="delivery-item-quantidade" min="1" value="1">
+                    </div>
+                    <div class="input-group">
+                        <label for="delivery-item-preco">Preço Unitário:</label>
+                        <input type="number" id="delivery-item-preco" step="0.01" min="0">
+                    </div>
+                    <button type="button" class="btn" id="btn-adicionar-item-delivery">Adicionar Item</button>
+
+                    <ul id="lista-itens-delivery">
+                        </ul>
+                    <div class="total-pedido">
+                        <strong>Total: R$ <span id="total-delivery-valor">0.00</span></strong>
+                    </div>
+
+                    <button type="submit" class="btn btn-finalizar">Registrar Pedido</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="pedidos-delivery-lista">
+            <h3>Pedidos Pendentes:</h3>
+            </div>
+    </div>
+    <script src="scripts/delivery.js"></script>
+</body>
+</html>

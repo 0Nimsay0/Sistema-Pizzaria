@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <h1>Tarantella - Pizzas e Massas</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Início</a></li>
+                <li><a href="cardapio.html">Cardápio</a></li>
+                <li><a href="#reservas">Reservas</a></li>
+                <li><a href="#contato">Contato</a></li>
+                <li><a href="mesas.html">Mesas</a></li>
+                <li><a href="delivery.html">Delivery</a></li>
+                <li><a href="login.html">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        <h2>Experiência Gastronômica Inesquecível</h2>
+        <p>Sabores autênticos, ambiente acolhedor e atendimento excepcional.</p>
+        <div class="action-buttons">
+            <a href="cardapio.html" class="btn">Ver Cardápio Online</a>
+            <a href="#reservas" class="btn btn-secondary">Faça Sua Reserva</a>
+        </div>
+    </section>
+
+    <section class="features-section container">
+        <h3>Nossos Serviços e Conveniências</h3>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-book-open"></i></div>
+                <h4>Cardápio Completo</h4>
+                <p>Explore nossa variedade de pratos e bebidas com descrições detalhadas e fotos.</p>
+                <a href="cardapio.html" class="btn btn-small">Acessar Cardápio</a>
+            </div>
+            <div class="feature-card" id="reservas">
+                <div class="icon"><i class="fas fa-calendar-alt"></i></div>
+                <h4>Faça Sua Reserva</h4>
+                <p>Garanta seu lugar com nosso sistema de reservas online intuitivo e rápido.</p>
+                <button class="btn btn-small" onclick="alert('Sistema indisponivel no momento')">Reservar Agora</button>
+            </div>
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-utensils"></i></div>
+                <h4>Experiência no Salão</h4>
+                <p>Desfrute de um ambiente agradável e atendimento de primeira em nosso restaurante.</p>
+                <a href="mesas.html" class="btn btn-small">Pedido no Salão</a>
+            </div>
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-motorcycle"></i></div>
+                <h4>Delivery Rápido</h4>
+                <p>Receba seus pratos favoritos no conforto da sua casa com nossa entrega eficiente.</p>
+                <a href="delivery.html" class="btn btn-small"">Pedir Online</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <h3>Nossa História e Filosofia</h3>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>A Pizzaria Tarantella com forte presença local em Machado, oferecendo tanto atendimento presencial quanto delivery, mantendo seu padrão de qualidade e eficiência (horários típicos à noite e fins de semana).</p>
+                    <p>É uma microempresa familiar, fundada em 2005, que cresceu com foco em massa caseira e atendimento acolhedor. Reconhecida por sua qualidade e ambiente familiar, mantém uma sólida reputação até hoje.</p>
+                </div>
+                <div class="about-image">
+                    <img src="imagens/WhatsApp Image 2025-06-22 at 16.07.18.jpeg" alt="Interior do Restaurante">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section container">
+        <h3>Nossas Delícias e Ambiente</h3>
+        <div class="gallery-grid">
+            <img src="https://source.unsplash.com/400x300/?gourmet-food" alt="Prato 1" class="gallery-item">
+            <img src="imagens/ambiente.jpeg" alt="Ambiente" class="gallery-item">
+            <img src="imagens/porcao.jpeg" alt="Porção" class="gallery-item">
+            <img src="imagens/bebida.jpg" alt="Bebida" class="gallery-item">
+        </div>
+    </section>
+
+    <section class="contact-section" id="contato">
+        <div class="container">
+            <h3>Localização e Contato</h3>
+            <div class="contact-grid">
+                <div class="contact-info-block">
+                    <h4><i class="fas fa-map-marker-alt"></i> Endereço</h4>
+                    <p>Praça 8 de Marco, 30 - Centro<br>Machado, MG - CEP 37750000</p>
+                </div>
+                <div class="contact-info-block">
+                    <h4><i class="fas fa-phone-alt"></i> Telefone</h4>
+                    <p>(35) 3295-4304</p>
+                    <p>(35)988093836 (WhatsApp)</p>
+                </div>
+                <div class="contact-info-block">
+                    <h4><i class="fas fa-clock"></i> Horário de Funcionamento</h4>
+                    <p>Domingo a Quinta: 18h - 23h</p>
+                    <p>Sexta e Sabado: 18h - 23h30</p>
+                    <p>Feriados: 18h - 23h30</p>
+                </div>
+                <div class="contact-info-block">
+                    <h4><i class="fas fa-share-alt"></i> Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/pizzariatarantella?igsh=eGVsaHd5Y2dxZWc4&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/tarantellamachado/?locale=pt_BR" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+               <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.891984028513!2d-45.922332!3d-21.678243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cb798c489a0e1f%3A0xe9f5dd1d3f5bd7f5!2sPizzaria%20Tarantella!5e0!3m2!1spt-BR!2sbr!4v1719073202719!5m2!1spt-BR!2sbr"
+                    width="100%"
+                    height="300"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Seu Restaurante Profissional. Todos os direitos reservados.</p>
+            <p><a href="#" class="footer-link" onclick="">Deixe sua Avaliação</a></p>
+        </div>
+    </footer>
+</body>
+</html>

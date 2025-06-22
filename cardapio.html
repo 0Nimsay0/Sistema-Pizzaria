@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <h1>Tarantella - Pizzas e Massas</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Início</a></li>
+                <li><a href="cardapio.html">Cardápio</a></li>
+                <li><a href="mesas.html">Mesas</a></li>
+                <li><a href="delivery.html">Delivery</a></li>
+                <li><a href="login.html">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container content">
+        <h2>Nosso Cardápio</h2>
+
+        <div class="menu-categories">
+            <button class="category-btn active" data-category="all">Todos</button>
+            <button class="category-btn" data-category="pizzas">Pizzas</button>
+            <button class="category-btn" data-category="bebidas">Bebidas</button>
+            <button class="category-btn" data-category="sobremesas">Sobremesas</button>
+            </div>
+
+        <div class="menu-grid">
+            <div class="menu-item" data-category="pizzas">
+                <img src="https://source.unsplash.com/400x300/?pizza-margherita" alt="Pizza Margherita" class="item-img">
+                <div class="item-info">
+                    <h3>Pizza Margherita</h3>
+                    <p class="item-description">Molho de tomate fresco, mussarela, manjericão e azeite extra virgem.</p>
+                    <span class="item-price">R$ 55,00</span>
+                    <button class="btn btn-small">Adicionar</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="pizzas">
+                <img src="https://source.unsplash.com/400x300/?pizza-pepperoni" alt="Pizza Calabresa" class="item-img">
+                <div class="item-info">
+                    <h3>Pizza Calabresa</h3>
+                    <p class="item-description">Molho, mussarela, calabresa fatiada e cebola.</p>
+                    <span class="item-price">R$ 58,00</span>
+                    <button class="btn btn-small">Adicionar</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="pizzas">
+                <img src="https://source.unsplash.com/400x300/?pizza-chicken-catupiry" alt="Pizza Frango Catupiry" class="item-img">
+                <div class="item-info">
+                    <h3>Pizza Frango com Catupiry</h3>
+                    <p class="item-description">Frango desfiado, catupiry original e orégano.</p>
+                    <span class="item-price">R$ 62,00</span>
+                    <button class="btn btn-small">Adicionar</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="bebidas">
+                <img src="https://source.unsplash.com/400x300/?cola-drink" alt="Coca-Cola" class="item-img">
+                <div class="item-info">
+                    <h3>Coca-Cola 1L</h3>
+                    <p class="item-description">Refrigerante Coca-Cola original de 1 litro.</p>
+                    <span class="item-price">R$ 10,00</span>
+                    <button class="btn btn-small">Adicionar</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="bebidas">
+                <img src="https://source.unsplash.com/400x300/?water-bottle" alt="Água Mineral" class="item-img">
+                <div class="item-info">
+                    <h3>Água Mineral (500ml)</h3>
+                    <p class="item-description">Água mineral sem gás.</p>
+                    <span class="item-price">R$ 5,00</span>
+                    <button class="btn btn-small">Adicionar</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="sobremesas">
+                <img src="https://source.unsplash.com/400x300/?chocolate-dessert" alt="Bolo de Chocolate" class="item-img">
+                <div class="item-info">
+                    <h3>Bolo de Chocolate</h3>
+                    <p class="item-description">Fatia generosa de bolo de chocolate com cobertura.</p>
+                    <span class="item-price">R$ 18,00</span>
+                    <button class="btn btn-small">Adicionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const menuItems = document.querySelectorAll('.menu-item');
+
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const selectedCategory = button.dataset.category;
+
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    menuItems.forEach(item => {
+                        const itemCategory = item.dataset.category;
+                        if (selectedCategory === 'all' || itemCategory === selectedCategory) {
+                            item.style.display = 'flex';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            document.querySelectorAll('.menu-item .btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const itemElement = event.target.closest('.menu-item');
+                    const itemName = itemElement.querySelector('h3').textContent;
+                    alert(`"${itemName}" adicionado ao pedido! (Apenas simulação)`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
