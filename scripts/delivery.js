@@ -15,64 +15,103 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnAdicionarItemDelivery = document.getElementById('btn-adicionar-item-delivery');
     const listaItensDelivery = document.getElementById('lista-itens-delivery');
     const totalDeliveryValor = document.getElementById('total-delivery-valor');
-    const pedidosDeliveryListaContainer = document.getElementById('pedidos-delivery-lista'); // Contêiner dos pedidos
-    const filtroPedidosInput = document.getElementById('filtro-pedidos'); // Novo input de filtro
+    const pedidosDeliveryListaContainer = document.getElementById('pedidos-delivery-lista');
+    const filtroPedidosInput = document.getElementById('filtro-pedidos');
 
-    // Simulação de um "banco de dados" de clientes
+    const modalDetalhesPedido = document.getElementById('modal-detalhes-pedido');
+    const closeButtonDetalhes = modalDetalhesPedido.querySelector('.close-button-detalhes');
+    const detalhesPedidoId = document.getElementById('detalhes-pedido-id');
+    const detalhesClienteInfo = document.getElementById('detalhes-cliente-info');
+    const detalhesListaItens = document.getElementById('detalhes-lista-itens');
+    const detalhesTotalValor = document.getElementById('detalhes-total-valor');
+
+    const modalBuscaProduto = document.getElementById('modal-busca-produto');
+    const closeButtonBusca = modalBuscaProduto.querySelector('.close-button-busca');
+    const buscaProdutoInput = document.getElementById('busca-produto-input');
+    const listaProdutosBusca = document.getElementById('lista-produtos-busca');
+    const categoryButtonsModal = modalBuscaProduto.querySelectorAll('.category-btn-modal');
+
+    const cardapio = [
+        { nome: 'Pizza Margherita', preco: '55.00', categoria: 'pizzas', descricao: 'Molho de tomate fresco, mussarela, manjericão e azeite.' },
+        { nome: 'Pizza Calabresa', preco: '58.00', categoria: 'pizzas', descricao: 'Molho, mussarela, calabresa fatiada e cebola.' },
+        { nome: 'Pizza Frango com Catupiry', preco: '62.00', categoria: 'pizzas', descricao: 'Frango desfiado, catupiry original e orégano.' },
+        { nome: 'Coca-Cola 1L', preco: '10.00', categoria: 'bebidas', descricao: 'Refrigerante Coca-Cola original de 1 litro.' },
+        { nome: 'Água Mineral (500ml)', preco: '5.00', categoria: 'bebidas', descricao: 'Água mineral sem gás.' },
+        { nome: 'Bolo de Chocolate', preco: '18.00', categoria: 'sobremesas', descricao: 'Fatia generosa de bolo de chocolate com cobertura.' }
+    ];
+
     const clientesCadastrados = [
         { id: 1, nome: 'João Silva', telefone: '9999-1111', endereco: 'Rua A, 123' },
         { id: 2, nome: 'Maria Souza', telefone: '9888-2222', endereco: 'Av. B, 456' },
         { id: 3, nome: 'Pedro Alvares', telefone: '9777-3333', endereco: 'Travessa C, 789' },
     ];
 
-    // Array para armazenar os pedidos pendentes
     let pedidosPendentes = [
-        { id: '001', cliente: { nome: 'João Silva', endereco: 'Rua A, 123' }, total: '45.00', status: 'Em Preparação' },
-        { id: '002', cliente: { nome: 'Maria Souza', endereco: 'Av. B, 456' }, total: '60.50', status: 'Aguardando' },
-        { id: '003', cliente: { nome: 'Pedro Alvares', endereco: 'Travessa C, 789' }, total: '25.00', status: 'Aguardando' }
+        { id: '001', cliente: { nome: 'João Silva', endereco: 'Rua A, 123', telefone: '9999-1111' }, total: '58.00', status: 'Em Preparo', itens: [{ nome: 'Pizza Calabresa', quantidade: 1, preco: 58.00 }] },
+        { id: '002', cliente: { nome: 'Maria Souza', endereco: 'Av. B, 456', telefone: '9888-2222' }, total: '72.00', status: 'Pronto', itens: [{ nome: 'Pizza Frango com Catupiry', quantidade: 1, preco: 62.00 }, { nome: 'Coca-Cola 1L', quantidade: 1, preco: 10.00 }] },
+        { id: '003', cliente: { nome: 'Pedro Alvares', endereco: 'Travessa C, 789', telefone: '9777-3333' }, total: '23.00', status: 'Entregue', itens: [{ nome: 'Bolo de Chocolate', quantidade: 1, preco: 18.00 }, { nome: 'Água Mineral (500ml)', quantidade: 1, preco: 5.00 }] }
     ];
     let pedidoDeliveryAtual = {
-        cliente: null, 
+        cliente: null,
         itens: []
     };
 
-    // --- Funções de Geração e Atualização de Pedidos ---
-
     function gerarIdPedido() {
-        return Math.floor(Math.random() * 900) + 100; // Gera um número entre 100 e 999
+        return Math.floor(Math.random() * 900) + 100;
     }
 
+    // ATUALIZADO: Renderiza o card com a nova estrutura compacta
     function renderizarPedidos(pedidosParaRenderizar) {
-        pedidosDeliveryListaContainer.innerHTML = '<h3>Pedidos Pendentes:</h3>'; // Limpa e adiciona o título
+        pedidosDeliveryListaContainer.innerHTML = ''; // Limpa o container
         if (pedidosParaRenderizar.length === 0) {
-            pedidosDeliveryListaContainer.innerHTML += '<p style="text-align: center; color: #777;">Nenhum pedido encontrado.</p>';
+            // Adiciona mensagem se não houver pedidos
+            const emptyMessage = document.createElement('p');
+            emptyMessage.textContent = 'Nenhum pedido encontrado.';
+            emptyMessage.style.textAlign = 'center';
+            emptyMessage.style.color = '#777';
+            emptyMessage.style.gridColumn = '1 / -1'; // Ocupa toda a largura do grid
+            pedidosDeliveryListaContainer.appendChild(emptyMessage);
             return;
         }
 
         pedidosParaRenderizar.forEach(pedido => {
             const pedidoCard = document.createElement('div');
             pedidoCard.classList.add('pedido-card');
-            // Adicionar uma classe de status para cores diferentes (opcional no CSS)
-            if (pedido.status === 'Em Preparação') {
-                pedidoCard.classList.add('status-preparacao');
-            } else if (pedido.status === 'Aguardando') {
-                pedidoCard.classList.add('status-aguardando');
+            
+            if (pedido.status === 'Entregue') {
+                pedidoCard.style.opacity = '0.7';
+            }
+
+            let statusClass = '';
+            let botoesAcao = '';
+
+            if (pedido.status === 'Em Preparo') {
+                statusClass = 'status-em-preparo';
+                botoesAcao = `<button class="btn btn-small btn-marcar-pronto" data-id="${pedido.id}">Marcar como Pronto</button>`;
+            } else if (pedido.status === 'Pronto') {
+                statusClass = 'status-pronto';
+                botoesAcao = `<button class="btn btn-small btn-marcar-entregue" data-id="${pedido.id}">Marcar como Entregue</button>`;
+            } else if (pedido.status === 'Entregue') {
+                statusClass = 'status-entregue';
             }
 
             pedidoCard.innerHTML = `
-                <h4>Pedido #${pedido.id}</h4>
-                <p><strong>Cliente:</strong> ${pedido.cliente.nome}</p>
-                <p><strong>Endereço:</strong> ${pedido.cliente.endereco}</p>
-                <p><strong>Total:</strong> R$ ${pedido.total}</p>
-                <p><strong>Status:</strong> ${pedido.status}</p>
-                <button class="btn btn-small btn-status-pronto" data-id="${pedido.id}">Marcar como Pronto</button>
-                <button class="btn btn-small btn-secondary btn-ver-detalhes" data-id="${pedido.id}">Ver Detalhes</button>
+                <div class="pedido-card-header">
+                    <h4>Pedido #${pedido.id}</h4>
+                    <span class="pedido-status-badge ${statusClass}">${pedido.status}</span>
+                </div>
+                <div class="pedido-card-body">
+                    <p><strong>Cliente:</strong> ${pedido.cliente.nome}</p>
+                    <p><strong>Total:</strong> R$ ${pedido.total}</p>
+                </div>
+                <div class="pedido-card-footer">
+                    ${botoesAcao}
+                    <button class="btn btn-small btn-secondary btn-ver-detalhes" data-id="${pedido.id}">Ver Detalhes</button>
+                </div>
             `;
             pedidosDeliveryListaContainer.appendChild(pedidoCard);
         });
     }
-
-    // --- Lógica de Filtro de Pedidos ---
 
     filtroPedidosInput.addEventListener('input', () => {
         const termoBusca = filtroPedidosInput.value.toLowerCase().trim();
@@ -85,12 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
         renderizarPedidos(pedidosFiltrados);
     });
 
-    // --- Lógica do Modal de Pedidos de Delivery ---
-
     btnNovoPedido.addEventListener('click', () => {
-        pedidoDeliveryAtual = { cliente: null, itens: [] }; // Reseta o pedido
+        pedidoDeliveryAtual = { cliente: null, itens: [] };
         formDelivery.reset();
-        clienteInfoDiv.style.display = 'none'; // Esconde info do cliente
+        clienteInfoDiv.style.display = 'none';
         listaItensDelivery.innerHTML = '<li style="text-align: center; color: #777;">Nenhum item adicionado.</li>';
         totalDeliveryValor.textContent = '0.00';
         modalDelivery.style.display = 'flex';
@@ -101,8 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('click', (event) => {
-        if (event.target == modalDelivery) {
-            modalDelivery.style.display = 'none';
+        if (event.target.classList.contains('modal')) {
+            event.target.style.display = 'none';
         }
     });
 
@@ -121,11 +158,11 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Cliente encontrado!');
         } else {
             alert('Cliente não encontrado. Por favor, cadastre os dados abaixo.');
-            clienteNomeInput.value = ''; // Limpa para novo cadastro
+            clienteNomeInput.value = '';
             clienteTelefoneInput.value = '';
             clienteEnderecoInput.value = '';
-            clienteInfoDiv.style.display = 'block'; // Mostra para preencher
-            pedidoDeliveryAtual.cliente = null; // Garante que não use dados antigos
+            clienteInfoDiv.style.display = 'block';
+            pedidoDeliveryAtual.cliente = null;
         }
     });
 
@@ -140,6 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
             deliveryItemNome.value = '';
             deliveryItemQuantidade.value = '1';
             deliveryItemPreco.value = '';
+            deliveryItemNome.placeholder = 'Clique para buscar um item';
         } else {
             alert('Por favor, preencha os detalhes do item corretamente.');
         }
@@ -179,7 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
     formDelivery.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        // Garante que o cliente tem dados preenchidos, mesmo que não seja encontrado na busca
         if (!pedidoDeliveryAtual.cliente) {
             if (clienteNomeInput.value.trim() && clienteTelefoneInput.value.trim() && clienteEnderecoInput.value.trim()) {
                 pedidoDeliveryAtual.cliente = {
@@ -187,13 +224,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     telefone: clienteTelefoneInput.value.trim(),
                     endereco: clienteEnderecoInput.value.trim()
                 };
-                // Adiciona ao array de clientes cadastrados se for um novo cliente
                 const clienteExistente = clientesCadastrados.find(c => c.telefone === pedidoDeliveryAtual.cliente.telefone);
                 if (!clienteExistente) {
-                    clientesCadastrados.push({
-                        id: clientesCadastrados.length + 1, // Simples ID
-                        ...pedidoDeliveryAtual.cliente
-                    });
+                    clientesCadastrados.push({ id: clientesCadastrados.length + 1, ...pedidoDeliveryAtual.cliente });
                 }
             } else {
                 alert('Por favor, preencha as informações do cliente para registrar o pedido.');
@@ -207,46 +240,122 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const novoPedido = {
-            id: gerarIdPedido().toString(), // Gera um ID único
-            cliente: {
-                nome: pedidoDeliveryAtual.cliente.nome,
-                endereco: pedidoDeliveryAtual.cliente.endereco
-            },
+            id: gerarIdPedido().toString(),
+            cliente: pedidoDeliveryAtual.cliente,
             total: totalDeliveryValor.textContent,
-            status: 'Aguardando' // Status inicial
+            status: 'Em Preparo',
+            itens: JSON.parse(JSON.stringify(pedidoDeliveryAtual.itens))
         };
 
-        pedidosPendentes.push(novoPedido); // Adiciona o novo pedido à lista
-        renderizarPedidos(pedidosPendentes); // Re-renderiza a lista completa
-
+        pedidosPendentes.unshift(novoPedido);
+        renderizarPedidos(pedidosPendentes);
         alert('Pedido de Delivery Registrado com Sucesso!');
-        modalDelivery.style.display = 'none'; // Fecha o modal
+        modalDelivery.style.display = 'none';
     });
 
-    // --- Lógica de Ação nos Pedidos Pendentes (Marcar como Pronto) ---
     pedidosDeliveryListaContainer.addEventListener('click', (event) => {
-        const btnPronto = event.target.closest('.btn-status-pronto');
-        if (btnPronto) {
-            const pedidoId = btnPronto.dataset.id;
-            const pedidoIndex = pedidosPendentes.findIndex(p => p.id === pedidoId);
-            if (pedidoIndex > -1) {
-                pedidosPendentes[pedidoIndex].status = 'Pronto para Entrega';
-                alert(`Pedido #${pedidoId} marcado como "Pronto para Entrega"!`);
-                renderizarPedidos(pedidosPendentes); // Atualiza a lista
-            }
-        }
+        const button = event.target;
+        const pedidoId = button.dataset.id;
+        if (!pedidoId) return;
 
-        const btnVerDetalhes = event.target.closest('.btn-ver-detalhes');
-        if(btnVerDetalhes){
-            const pedidoId = btnVerDetalhes.dataset.id;
-            const pedido = pedidosPendentes.find(p => p.id === pedidoId);
-            if(pedido){
-                // Aqui você pode criar um modal para exibir os detalhes completos do pedido
-                alert(`Detalhes do Pedido #${pedido.id}:\nCliente: ${pedido.cliente.nome}\nEndereço: ${pedido.cliente.endereco}\nTotal: R$ ${pedido.total}\nStatus: ${pedido.status}\nItens: (funcionalidade a ser expandida para mostrar itens específicos)`);
-            }
+        const pedidoIndex = pedidosPendentes.findIndex(p => p.id === pedidoId);
+        if (pedidoIndex === -1) return;
+
+        if (button.classList.contains('btn-marcar-pronto')) {
+            pedidosPendentes[pedidoIndex].status = 'Pronto';
+        } else if (button.classList.contains('btn-marcar-entregue')) {
+            pedidosPendentes[pedidoIndex].status = 'Entregue';
+        } else if (button.classList.contains('btn-ver-detalhes')) {
+            abrirModalDetalhes(pedidosPendentes[pedidoIndex]);
+            return; // Não re-renderizar a lista inteira ao só ver detalhes
+        } else {
+            return; // Sair se não for um botão de ação conhecido
         }
+        
+        renderizarPedidos(pedidosPendentes);
     });
 
-    // Renderiza os pedidos iniciais ao carregar a página
+    function abrirModalDetalhes(pedido) {
+        detalhesPedidoId.textContent = `#${pedido.id}`;
+        detalhesClienteInfo.innerHTML = `
+            <p><strong>Cliente:</strong> ${pedido.cliente.nome}</p>
+            <p><strong>Telefone:</strong> ${pedido.cliente.telefone}</p>
+            <p><strong>Endereço:</strong> ${pedido.cliente.endereco}</p>
+        `;
+        detalhesListaItens.innerHTML = '';
+        if (pedido.itens && pedido.itens.length > 0) {
+            pedido.itens.forEach(item => {
+                const li = document.createElement('li');
+                const subtotal = item.quantidade * item.preco;
+                li.innerHTML = `
+                    <span>${item.quantidade}x ${item.nome}</span>
+                    <span>R$ ${subtotal.toFixed(2)}</span>
+                `;
+                detalhesListaItens.appendChild(li);
+            });
+        } else {
+            detalhesListaItens.innerHTML = '<li>Nenhum item neste pedido.</li>';
+        }
+        detalhesTotalValor.textContent = pedido.total;
+        modalDetalhesPedido.style.display = 'flex';
+    }
+
+    closeButtonDetalhes.addEventListener('click', () => {
+        modalDetalhesPedido.style.display = 'none';
+    });
+
+    function renderizarProdutosBusca(filtro = '', categoria = 'all') {
+        listaProdutosBusca.innerHTML = '';
+        const produtosFiltrados = cardapio.filter(produto =>
+            produto.nome.toLowerCase().includes(filtro.toLowerCase()) &&
+            (categoria === 'all' || produto.categoria === categoria)
+        );
+
+        if (produtosFiltrados.length === 0) {
+            listaProdutosBusca.innerHTML = '<p style="text-align: center; color: #777;">Nenhum produto encontrado.</p>';
+            return;
+        }
+
+        produtosFiltrados.forEach(produto => {
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('menu-item');
+            itemDiv.innerHTML = `
+                <div class="item-info">
+                    <h3>${produto.nome}</h3>
+                    <div class="item-price">R$ ${parseFloat(produto.preco).toFixed(2)}</div>
+                </div>
+            `;
+            itemDiv.addEventListener('click', () => {
+                deliveryItemNome.value = produto.nome;
+                deliveryItemPreco.value = parseFloat(produto.preco).toFixed(2);
+                modalBuscaProduto.style.display = 'none';
+            });
+            listaProdutosBusca.appendChild(itemDiv);
+        });
+    }
+
+    deliveryItemNome.addEventListener('click', () => {
+        renderizarProdutosBusca();
+        modalBuscaProduto.style.display = 'flex';
+    });
+
+    closeButtonBusca.addEventListener('click', () => {
+        modalBuscaProduto.style.display = 'none';
+    });
+
+    buscaProdutoInput.addEventListener('input', () => {
+        const categoriaAtiva = modalBuscaProduto.querySelector('.category-btn-modal.active').dataset.category;
+        renderizarProdutosBusca(buscaProdutoInput.value, categoriaAtiva);
+    });
+
+    categoryButtonsModal.forEach(button => {
+        button.addEventListener('click', () => {
+            categoryButtonsModal.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            const selectedCategory = button.dataset.category;
+            renderizarProdutosBusca(buscaProdutoInput.value, selectedCategory);
+        });
+    });
+
     renderizarPedidos(pedidosPendentes);
 });

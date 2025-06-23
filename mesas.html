@@ -13,18 +13,30 @@
         <h1>Tarantella - Pizzas e Massas</h1>
         <nav>
             <ul>
-                <li><a href="index.html" class="active">Início</a></li>
+                <li><a href="index.html">Início</a></li>
                 <li><a href="cardapio.html">Cardápio</a></li>
-                <li><a href="mesas.html">Mesas</a></li>
+                <li><a href="mesas.html" class="active">Mesas</a></li>
                 <li><a href="delivery.html">Delivery</a></li>
                 <li><a href="login.html">Sair</a></li>
             </ul>
         </nav>
     </header>
+
     <div class="container content">
-        <h2>Gerenciamento de Mesas</h2>
-        <div id="mesa-grid-container" class="mesa-grid">
-            </div>
+
+        <div class="mesas-section">
+            <h3>Mesas Ocupadas</h3>
+            <div id="mesas-ocupadas-grid" class="mesa-grid">
+                </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="mesas-section">
+            <h3>Mesas Disponíveis</h3>
+            <div id="mesas-disponiveis-grid" class="mesa-grid">
+                </div>
+        </div>
 
         <div id="modal-pedido" class="modal">
             <div class="modal-content">
@@ -33,7 +45,7 @@
                 <form id="form-pedido">
                     <div class="input-group">
                         <label for="item-nome">Item:</label>
-                        <input type="text" id="item-nome" placeholder="Nome do item" required>
+                        <input type="text" id="item-nome" placeholder="Clique para buscar um item" required>
                     </div>
                     <div class="input-group">
                         <label for="item-quantidade">Quantidade:</label>
@@ -56,6 +68,25 @@
             </div>
         </div>
     </div>
+
+    <div id="modal-busca-produto" class="modal">
+        <div class="modal-content">
+            <span class="close-button-busca">&times;</span>
+            <h3>Buscar Produto no Cardápio</h3>
+            <div class="input-group">
+                <input type="text" id="busca-produto-input" placeholder="Digite para buscar um produto...">
+            </div>
+            <div class="menu-categories">
+                <button class="category-btn-modal active" data-category="all">Todos</button>
+                <button class="category-btn-modal" data-category="pizzas">Pizzas</button>
+                <button class="category-btn-modal" data-category="bebidas">Bebidas</button>
+                <button class="category-btn-modal" data-category="sobremesas">Sobremesas</button>
+            </div>
+            <div id="lista-produtos-busca" class="menu-grid">
+                </div>
+        </div>
+    </div>
+
     <script src="scripts/mesas.js"></script>
 </body>
 </html>

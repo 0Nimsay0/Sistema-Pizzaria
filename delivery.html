@@ -63,7 +63,7 @@
                     <h4>Itens do Pedido:</h4>
                     <div class="input-group">
                         <label for="delivery-item-nome">Item:</label>
-                        <input type="text" id="delivery-item-nome" placeholder="Nome do item">
+                        <input type="text" id="delivery-item-nome" placeholder="Clique para buscar um item">
                     </div>
                     <div class="input-group">
                         <label for="delivery-item-quantidade">Quantidade:</label>
@@ -90,5 +90,43 @@
             <h3>Pedidos Pendentes:</h3>
             </div>
     </div>
-    <script src="scripts/delivery.js"></script> </body>
+
+    <div id="modal-busca-produto" class="modal">
+        <div class="modal-content">
+            <span class="close-button-busca">&times;</span>
+            <h3>Buscar Produto no Cardápio</h3>
+            <div class="input-group">
+                <input type="text" id="busca-produto-input" placeholder="Digite para buscar um produto...">
+            </div>
+            <div class="menu-categories">
+                <button class="category-btn-modal active" data-category="all">Todos</button>
+                <button class="category-btn-modal" data-category="pizzas">Pizzas</button>
+                <button class="category-btn-modal" data-category="bebidas">Bebidas</button>
+                <button class="category-btn-modal" data-category="sobremesas">Sobremesas</button>
+            </div>
+            <div id="lista-produtos-busca" class="menu-grid">
+                </div>
+        </div>
+    </div>
+    
+    <div id="modal-detalhes-pedido" class="modal">
+        <div class="modal-content">
+            <span class="close-button-detalhes">&times;</span>
+            <h3>Detalhes do Pedido <span id="detalhes-pedido-id"></span></h3>
+            
+            <div id="detalhes-cliente-info" class="detalhes-section">
+                </div>
+
+            <hr>
+            <h4>Itens do Pedido:</h4>
+            <ul id="detalhes-lista-itens">
+                </ul>
+            <div class="total-pedido">
+                <strong>Total: R$ <span id="detalhes-total-valor">0.00</span></strong>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/delivery.js"></script> 
+</body>
 </html>

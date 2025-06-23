@@ -13,8 +13,8 @@
         <h1>Tarantella - Pizzas e Massas</h1>
         <nav>
             <ul>
-                <li><a href="index.html" class="active">Início</a></li>
-                <li><a href="cardapio.html">Cardápio</a></li>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="cardapio.html" class="active">Cardápio</a></li>
                 <li><a href="mesas.html">Mesas</a></li>
                 <li><a href="delivery.html">Delivery</a></li>
                 <li><a href="login.html">Sair</a></li>
@@ -30,16 +30,15 @@
             <button class="category-btn" data-category="pizzas">Pizzas</button>
             <button class="category-btn" data-category="bebidas">Bebidas</button>
             <button class="category-btn" data-category="sobremesas">Sobremesas</button>
-            </div>
+        </div>
 
-        <div class="menu-grid">
+        <div class="menu-grid" id="cardapio-page-grid">
             <div class="menu-item" data-category="pizzas">
                 <img src="https://source.unsplash.com/400x300/?pizza-margherita" alt="Pizza Margherita" class="item-img">
                 <div class="item-info">
                     <h3>Pizza Margherita</h3>
                     <p class="item-description">Molho de tomate fresco, mussarela, manjericão e azeite extra virgem.</p>
                     <span class="item-price">R$ 55,00</span>
-                    <button class="btn btn-small">Adicionar</button>
                 </div>
             </div>
 
@@ -49,7 +48,6 @@
                     <h3>Pizza Calabresa</h3>
                     <p class="item-description">Molho, mussarela, calabresa fatiada e cebola.</p>
                     <span class="item-price">R$ 58,00</span>
-                    <button class="btn btn-small">Adicionar</button>
                 </div>
             </div>
 
@@ -59,7 +57,6 @@
                     <h3>Pizza Frango com Catupiry</h3>
                     <p class="item-description">Frango desfiado, catupiry original e orégano.</p>
                     <span class="item-price">R$ 62,00</span>
-                    <button class="btn btn-small">Adicionar</button>
                 </div>
             </div>
 
@@ -69,7 +66,6 @@
                     <h3>Coca-Cola 1L</h3>
                     <p class="item-description">Refrigerante Coca-Cola original de 1 litro.</p>
                     <span class="item-price">R$ 10,00</span>
-                    <button class="btn btn-small">Adicionar</button>
                 </div>
             </div>
 
@@ -79,7 +75,6 @@
                     <h3>Água Mineral (500ml)</h3>
                     <p class="item-description">Água mineral sem gás.</p>
                     <span class="item-price">R$ 5,00</span>
-                    <button class="btn btn-small">Adicionar</button>
                 </div>
             </div>
 
@@ -89,7 +84,6 @@
                     <h3>Bolo de Chocolate</h3>
                     <p class="item-description">Fatia generosa de bolo de chocolate com cobertura.</p>
                     <span class="item-price">R$ 18,00</span>
-                    <button class="btn btn-small">Adicionar</button>
                 </div>
             </div>
         </div>
@@ -118,13 +112,7 @@
                 });
             });
 
-            document.querySelectorAll('.menu-item .btn').forEach(button => {
-                button.addEventListener('click', (event) => {
-                    const itemElement = event.target.closest('.menu-item');
-                    const itemName = itemElement.querySelector('h3').textContent;
-                    alert(`"${itemName}" adicionado ao pedido! (Apenas simulação)`);
-                });
-            });
+            // O código do botão de adicionar foi removido daqui.
         });
     </script>
 </body>
