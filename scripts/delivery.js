@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const listaProdutosBusca = document.getElementById('lista-produtos-busca');
     const categoryButtonsModal = modalBuscaProduto.querySelectorAll('.category-btn-modal');
 
+    // simulação do banco de dados ate back
     const cardapio = [
         { nome: 'Pizza Margherita', preco: '55.00', categoria: 'pizzas', descricao: 'Molho de tomate fresco, mussarela, manjericão e azeite.' },
         { nome: 'Pizza Calabresa', preco: '58.00', categoria: 'pizzas', descricao: 'Molho, mussarela, calabresa fatiada e cebola.' },
