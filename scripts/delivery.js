@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: '003', cliente: { nome: 'Pedro Alvares', endereco: 'Travessa C, 789' }, total: '25.00', status: 'Aguardando' }
     ];
     let pedidoDeliveryAtual = {
-        cliente: null,
+        cliente: null, 
         itens: []
     };
 

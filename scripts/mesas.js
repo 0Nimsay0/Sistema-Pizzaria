@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let pedidosMesas = {};
     let mesaAtualId = null;
 
-    const totalMesas = 50;
+    const totalMesas = 98;
     for (let i = 1; i <= totalMesas; i++) {
         const mesaCard = document.createElement('div');
         mesaCard.classList.add('mesa-card');
